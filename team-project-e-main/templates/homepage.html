@@ -1,0 +1,67 @@
+<html> 
+<head>
+<title>Flavor Finder</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <a href="/big_toast">
+            <img src="/static/toast.png" alt="Flavor Finder Logo" class="logo">
+        </a>
+        <h1>Flavor Finder</h1>
+        <nav>
+            <ul>
+                <li><a class="highlight" href="\">Home</a></li>
+                <li><a href="\search_by_title">Search by Recipe Title</a></li>
+                <li><a href="\ingredient_search">Search by Ingredients</a></li>
+                <li><a href="\random">Random Recipes</a></li>
+                <li><a href="\all_recipes">All Recipes</a></li>
+            </ul>
+        </nav>
+     </header>
+
+    <div class="highlight">
+        <h2>Welcome to Flavor Finder!</h2>
+        <h3>This website allows users to find random recipes, or to search for recipes by title or by ingredients. This way anybody can find a delicious recipe to fit any situation.</h3>
+    </div>
+
+    <div>
+    <h2>Our Favorite Recipes</h2>
+        <div class="all_fav_recipes">
+            <div class="fav_recipe">
+                <h3>Marc</h3>
+                <img src="/static/honey-and-soy-glazed-salmon-14110.jpg" alt="Honey Glazed Salmon Recipe Image" class="recipe-image">
+                <a href="/display_recipe/{{marc_recipe.get_id()}}">{{marc_recipe.get_title()}}</a>
+            </div>
+            <div class="fav_recipe">
+                <h3>Willan</h3>
+                <img src="/static/enchiladas-verdes-green-chicken-enchiladas-56389864.jpg" alt="Enchiladas Verdes Recipe Image" class="recipe-image">
+                <a href="/display_recipe/{{willan_recipe.get_id()}}">{{willan_recipe.get_title()}}</a>
+            </div>
+            <div class="fav_recipe">
+                <h3>Anika</h3>
+                <img src="/static/toms-tasty-tomato-soup-with-brown-butter-croutons-51129200.jpg" alt="Tom's Tomato Soup Recipe Image" class="recipe-image">
+                <a href="/display_recipe/{{anika_recipe.get_id()}}">{{anika_recipe.get_title()}}</a>
+            </div>
+            <div class="fav_recipe">
+                <h3>Allison</h3>
+                <img src="/static/vietnamese-candy-pork.jpg" alt="Candy Pork Recipe Image" class="recipe-image">
+                <a href="/display_recipe/{{allison_recipe.get_id()}}">{{allison_recipe.get_title()}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="highlight">
+        <h2>Featured Recipe</h2>
+        <br>
+        <img src="static/present.png" alt="Present" class="present-img">
+        <br>
+        <a href="/display_recipe/{{featured_recipe.get_id()}}" class = recipe-link>{{featured_recipe.get_title()}}</a>
+        <br><br>
+    </div>
+    <div>
+        <h2>About the Data:</h2>
+        <p>The data comes from a dataset on Kaggle of recipes scraped from epicurious.com in 2021. It contains over 13,000 recipes ranging from main courses to drinks to desserts.</p>
+    </div>
+
+</body>

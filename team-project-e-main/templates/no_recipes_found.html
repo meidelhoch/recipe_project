@@ -1,0 +1,51 @@
+<html> 
+<head>
+<title>Error: Recipe Not Found</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Flavor Finder</h1>
+        <nav>
+            <ul>
+                <li><a href="\">Home</a></li>
+                <li><a href="\search_by_title">Search by Recipe Title</a></li>
+                <li><a href="\ingredient_search">Search by Ingredients</a></li>
+                <li><a href="\random">Random Recipes</a></li>
+                <li><a href="\all_recipes">All Recipes</a></li>
+            </ul>
+        </nav>
+     </header>
+
+    <div>
+        <h2>No Recipes Found That Match Your Search Criteria</h2>
+        
+        {% if included_ingredients or excluded_ingredients %}
+        <div class="search-criteria">
+            {% if included_ingredients %}
+            <h3>Included Ingredients:</h3> 
+                <ul class="ingredient-list">
+                    {% for ingredient in included_ingredients %}
+                    <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+            </p>
+            {% endif %}
+            {% if excluded_ingredients %}
+            <h3>Excluded Ingredients:</h3> 
+            <ul class="ingredient-list">
+                    {% for ingredient in excluded_ingredients %}
+                    <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <br>
+        {% endif %}
+        
+        <p>Don't forget to press enter after each ingredient!</p>
+        <a href="\ingredient_search" class="button">Search by Ingredients</a>
+    </div>
+</body>
+</html>

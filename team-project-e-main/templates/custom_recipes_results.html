@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Recipe Search Results</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+<body>
+    <header>
+        <a href="/big_toast">
+            <img src="/static/toast.png" alt="Flavor Finder Logo" class="logo">
+        </a>
+        <h1>Flavor Finder</h1>
+        <nav>
+            <ul>
+                <li><a href="\">Home</a></li>
+                <li><a href="\search_by_title">Search by Recipe Title</a></li>
+                <li><a class="highlight" href="\ingredient_search">Search by Ingredients</a></li>
+                <li><a href="\random">Random Recipes</a></li>
+                <li><a href="\all_recipes">All Recipes</a></li>
+            </ul>
+        </nav>
+     </header>
+
+     <div class="search-summary">
+        <h2>Your Custom Recipe Search</h2>
+        
+        <div class="search-criteria">
+            {% if included_ingredients %}
+            <div class="ingredient-group">
+                <h3>Included Ingredients:</h3>
+                <ul class="ingredient-list">
+                    {% for ingredient in included_ingredients %}
+                    <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            
+            {% if excluded_ingredients %}
+            <div class="ingredient-group">
+                <h3>Excluded Ingredients:</h3>
+                <ul class="ingredient-list">
+                    {% for ingredient in excluded_ingredients %}
+                    <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+     </div>
+    <br>
+
+
+     <div class="alphabet_links">
+        <a href = '#'>Top</a>
+        {% for letter in letters %}
+            <a href = '#{{ letter }}'>{{ letter }}</a>
+        {% endfor %}
+     </div>
+     <br><br>
+
+     <h2>Matching Recipes:</h2>
+
+    {% if sorted_recipes %}
+    <div class="recipes_div">
+    <ul>
+        {% for letter, recipes in sorted_recipes.items() %}
+        <h3 id="{{ letter }}">{{ letter }}</h3>
+            {% for recipe in recipes %}
+                <li>
+                    <a href="{{ url_for('display_recipe', recipe_id=recipe[0]) }}">
+                        {{ recipe[1] }}
+                    </a>
+                </li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+    </div>
+    {% else %}
+    <p class="error_message">No recipes match your search criteria. Click below to search again.</p>
+    <a href="{{ url_for('ingredient_search') }}" class="button">Search by Ingredients</a>
+    {% endif %}
+     
+</body>
+</html>

@@ -1,0 +1,42 @@
+<html> 
+<head>
+<title>Search by Recipe Title</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <a href="/big_toast">
+            <img src="/static/search_toast.png" alt="Flavor Finder Logo" class="logo">
+        </a>
+        <h1>Flavor Finder</h1>
+        <nav>
+            <ul>
+                <li><a href="\">Home</a></li>
+                <li><a class="highlight" href="\search_by_title">Search by Recipe Title</a></li>
+                <li><a href="\ingredient_search">Search by Ingredients</a></li>
+                <li><a href="\random">Random Recipes</a></li>
+                <li><a href="\all_recipes">All Recipes</a></li>
+            </ul>
+        </nav>
+     </header>
+
+     <div>
+        <h2>Here you can search by recipe title!</h2>
+        <p>This allows you to quickly find your favorite recipe!</p>
+    </div>
+
+    <div>
+        <form method="POST" action="/handle_title_form">
+            <label for="recipe_title">Recipe Title:</label>
+            <input id="recipe_search" type="text" name="recipe_title" placeholder="Enter recipe title" autocomplete="off">
+            {% if last_search %}
+                <p class="search_error_message">Unfortunately "{{ last_search }}" does not exist in our database. Please try again.</p>
+            {% endif %}
+            <ul id="suggestions"></ul>
+            <input type="submit" name="submit" value="Search">
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='search_by_title.js') }}"></script>
+</body>

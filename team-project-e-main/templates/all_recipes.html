@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Recipes</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+<body>
+    <header>
+        <a href="/big_toast">
+            <img src="/static/toast.png" alt="Flavor Finder Logo" class="logo">
+        </a>
+        <h1>Flavor Finder</h1>
+        <nav>
+            <ul>
+                <li><a href="\">Home</a></li>
+                <li><a href="\search_by_title">Search by Recipe Title</a></li>
+                <li><a href="\ingredient_search">Search by Ingredients</a></li>
+                <li><a href="\random">Random Recipes</a></li>
+                <li><a class="{{highlight}}" href="\all_recipes">All Recipes</a></li>
+            </ul>
+        </nav>
+     </header>
+
+     <div class="alphabet_links">
+        <a href = '#'>Top</a>
+        {% for letter in letters %}
+            <a href = '#{{ letter }}'>{{ letter }}</a>
+        {% endfor %}
+     </div>
+     <br><br>
+
+     <div class="search-criteria">
+            {% if included_ingredients %}
+            <h3>Included Ingredients:</h3> 
+                <ul class="ingredient-list">
+                    {% for ingredient in included_ingredients %}
+                    <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+            </p>
+            {% endif %}
+            {% if excluded_ingredients %}
+            <h3>Excluded Ingredients:</h3>
+            <ul class="ingredient-list">
+                    {% for ingredient in excluded_ingredients %}
+                    <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+
+        <h2>Here are the recipes:</h2>
+
+
+     
+    <div class="recipes_div">
+    <ul>
+        {% for letter, recipes in sorted_recipes.items() %}
+        <h3 id="{{ letter }}">{{ letter }}</h3>
+            {% for recipe in recipes %}
+                <li>
+                    <a href="{{ url_for('display_recipe', recipe_id=recipe[0]) }}">
+                        {{ recipe[1] }}
+                    </a>
+                </li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+    </div>
+
+
+
+</body>
+</html>

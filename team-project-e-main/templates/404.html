@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page Not Found - Flavor Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="error-container">
+        <h1>404</h1>
+        <p>Oops! That page doesn't exist.</p>
+        <p>Maybe try one of these instead:</p>
+        <a href="\" class="button">Home</a>
+        <a href="\search_by_title" class="button">Search by Title</a>
+        <a href="\ingredient_search" class="button">Search by Ingredients</a>
+        <a href="\random" class="button">Generate Random Recipe</a>
+        <a href="\all_recipes" class="button">All Recipes</a>
+    </div>
+</body>
+</html>

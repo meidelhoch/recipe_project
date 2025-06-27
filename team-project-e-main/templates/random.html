@@ -1,0 +1,37 @@
+
+<html>
+<head>
+<title>Random Search</title>
+<link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+<body>
+
+    <header>
+        <a href="/big_toast">
+            <img src="/static/random_toast.png" alt="Flavor Finder Logo" class="logo">
+        </a>
+        <h1>Flavor Finder</h1>
+        <nav>
+            <ul>
+                <li><a href="\">Home</a></li>
+                <li><a href="\search_by_title">Search by Recipe Title</a></li>
+                <li><a href="\ingredient_search">Search by Ingredients</a></li>
+                <li><a class="highlight" href="\random">Random Recipes</a></li>
+                <li><a href="\all_recipes">All Recipes</a></li>
+            </ul>
+        </nav>
+     </header>
+<h2>Random Search</h2>
+
+<p>Enter a number of recipes and click the button below to find a random flavor!</p>
+<form action="/handle_random_form" method="POST">
+    <label for="num_recipes">How many recipes?</label>
+    <input type="text" id="num_recipes" name="num_recipes" placeholder="Enter a number" required>
+    {% if last_search %}
+        <p class="error_message">You entered an invalid number of recipes: "{{ last_search }}". Please enter a number between 1 and 13493.</p>
+    {% endif %}
+    <input type="submit" name="submit" value="Generate">
+  </form>
+  
+</body>
+</html>

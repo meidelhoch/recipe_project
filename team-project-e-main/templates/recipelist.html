@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Random Recipes</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+<body>
+    <h1>Flavor Finder</h1>
+    <nav>
+        <ul>
+            <li><a href="\">Home</a></li>
+            <li><a href="\search_by_title">Search by Recipe Title</a></li>
+            <li><a href="\ingredient_search">Search by Ingredients</a></li>
+            <li><a href="\random">Random Recipes</a></li>
+            <li><a href="\all_recipes">All Recipes</a></li>
+        </ul>
+    </nav>
+
+        <h2>Your Recipes</h2>
+        
+            {% if recipes %}
+            <ul>
+                {% for recipe in recipes %}
+                <li>
+                    <a href="/display_recipe/{{recipe[0]}}">
+                        {{ recipe[1] }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>You entered an invalid number of recipes. Try a number between 1 and 13493. Click below to generate more recipes.</p>
+            <a href="\random" class="button">Generate Random Recipes</a>
+            {% endif %}
+
+</body>
+</html>
